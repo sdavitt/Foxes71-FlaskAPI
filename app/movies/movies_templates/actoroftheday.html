@@ -1,0 +1,14 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}Actor of the Day{% endblock title %}
+
+{% block content %}
+<!-- if you see double curly brackets or curly bracket percent signs - those are jinja statements aka python code written into our html template -->
+<h1>The movie of the day is: {{ movie }}</h1>
+<br>
+<h1>Some of the actors in that movie:</h1>
+<br>
+{% for actor in actors %}
+    <h2>{{ actor }}</h2>
+{% endfor %}
+{% endblock content %}
