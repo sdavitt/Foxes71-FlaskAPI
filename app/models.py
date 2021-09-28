@@ -8,18 +8,22 @@ db = SQLAlchemy()
 # and we define it with the SQL CREATE TABLE in mind (what columns do I want? what SQL datatypes will those columns be? what constraints will those columns have?)
 class Actor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False, unique=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100))
     hiringprice = db.Column(db.String(20))
     age = db.Column(db.Integer)
     nationality = db.Column(db.String(50))
-    bestperformance = db.Column(db.String(250))
+    bestrole = db.Column(db.String(100))
+    bestmovie = db.Column(db.String(100))
 
     def to_dict(self):
         return {
             'id': self.id,
-            'name': self.name,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'hiringprice': self.hiringprice,
             'age': self.age,
             'nationality': self.nationality,
-            'bestperformance': self.bestperformance
+            'bestrole': self.bestrole,
+            'bestmovie': self.bestmovie
         }

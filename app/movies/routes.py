@@ -33,7 +33,13 @@ def addactor():
             print('form validated') # any time you see a print in flask - it is just the developer giving themselves more information for debugging and/or writing code
         
             # create an instance of our actor object from form data
-            newactor = Actor(name=form.name.data, age=form.age.data, nationality=form.nationality.data, hiringprice=form.hiringprice.data, bestperformance=form.best_film.data)
+            newactor = Actor(first_name=form.first_name.data,
+                            last_name=form.last_name.data,
+                            age=form.age.data,
+                            nationality=form.nationality.data,
+                            hiringprice=form.hiringprice.data,
+                            bestrole=form.bestrole.data,
+                            bestmovie=form.bestmovie.data)
             
             # put that instance of an actor into our database
             db.session.add(newactor)

@@ -7,9 +7,11 @@ from wtforms.validators import DataRequired
 
 class newActorForm(FlaskForm):
     # what we put inside this class is whatever data fields we intend our form to have
-    name = StringField('Name', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name')
     hiringprice = StringField('Hiring Price')
     age = IntegerField('Age', validators=[DataRequired()])
     nationality = StringField('Nationality')
-    best_film = StringField('Best Performance', validators=[DataRequired()])
+    bestrole = StringField('Best Role', validators=[DataRequired()])
+    bestmovie = StringField('Best Movie/Show', validators=[DataRequired()])
     submit = SubmitField()
