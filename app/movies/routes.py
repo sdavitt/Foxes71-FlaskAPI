@@ -3,6 +3,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app.forms import newActorForm
 
+# database imports
+from app.models import db, Actor
+
 # create the instance of our blueprint
 movies = Blueprint('movies',  __name__, template_folder='movies_templates')
 
@@ -27,12 +30,19 @@ def addactor():
         # first, we need to check if the form validates
         
         if form.validate_on_submit():
-            # any time you see a print in flask - it is just the developer giving themselves more information for debugging and/or writing code
-            flash('form validated', category='alert-info')
-            validated = True
+            print('form validated') # any time you see a print in flask - it is just the developer giving themselves more information for debugging and/or writing code
+        
+            # create an instance of our actor object from form data
+            newactor = Actor(name=form.name.data, age=form.age.data, nationality=form.nationality.data, hiringprice=form.hiringprice.data, bestperformance=form.best_film.data)
+            
+            # put that instance of an actor into our database
+            db.session.add(newactor)
+            db.session.commit()
+
+            flash('New actor added to our database.', category='alert-info')
+            flash(f'{newactor.to_dict()}', category='alert-info')
         else:
-            flash('form did not validate', category='alert-danger')
-            validated = False
+            flash('You entered incomplete or incorrect data, please try again.', category='alert-danger')
         
         return redirect(url_for('movies.addactor'))
     # implied else when request.method == 'GET'
