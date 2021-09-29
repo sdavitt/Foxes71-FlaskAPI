@@ -2,6 +2,7 @@
 # imports
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app.forms import newActorForm
+from flask_login import login_required
 
 # database imports
 from app.models import db, Actor
@@ -23,6 +24,7 @@ def actoroftheday():
 
 
 @movies.route('/addactor', methods=['GET', 'POST'])
+@login_required
 def addactor():
     form = newActorForm()
     if request.method == 'POST':

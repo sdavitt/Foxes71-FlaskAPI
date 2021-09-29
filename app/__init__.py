@@ -27,6 +27,9 @@ migrate = Migrate(app, db)
 
 # configuration for our login manager
 login.init_app(app)
+login.login_view = 'auth.signin'
+login.login_message = 'Please log in to see this page.'
+login.login_message_category = 'alert-info'
 
 
 
