@@ -4,7 +4,8 @@ from config import Config
 
 # import our blueprints for registration
 from .movies.routes import movies
-from .authorization.routes import auth
+from .authentication.routes import auth
+from .api.routes import api
 
 # imports for our database stuff
 from .models import db, login
@@ -16,6 +17,7 @@ app = Flask(__name__)
 # register our blueprints
 app.register_blueprint(movies)
 app.register_blueprint(auth)
+app.register_blueprint(api)
 
 # configure that app from our config file
 app.config.from_object(Config)
