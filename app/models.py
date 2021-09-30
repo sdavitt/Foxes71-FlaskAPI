@@ -43,6 +43,24 @@ class Actor(db.Model):
             'bestmovie': self.bestmovie
         }
 
+    def from_dict(self, new):
+        if new.get('id'):
+            self.id = new.get('id')
+        if new.get('first_name'):
+            self.first_name = new.get('first_name')
+        if new.get('last_name') or new.get('last_name') == '':
+            self.last_name = new.get('last_name')
+        if new.get('hiringprice') or new.get('hiringprice') == '':
+            self.hiringprice = new.get('hiringprice')
+        if new.get('age'):
+            self.age = new.get('age')
+        if new.get('nationality') or new.get('nationality') == '':
+            self.nationality = new.get('nationality')
+        if new.get('bestrole'):
+            self.bestrole = new.get('bestrole')
+        if new.get('bestmovie'):
+            self.bestmovie = new.get('bestmovie')
+
 
 # for our user model we'll need a couple additional tools - specifically, a login manager and a security package
 class User(db.Model, UserMixin):
