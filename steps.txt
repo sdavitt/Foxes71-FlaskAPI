@@ -38,3 +38,9 @@ Here are the steps I've taken so far:
     # flask db init !IMPORTANT only run once - after db is initialized running flask db init again can cause issues
     # flask db migrate
     # flask db upgrade
+
+
+# For heroku deployment - set .env vars as config vars on heroku website
+# pip install gunicorn
+# Procfile must be in correct location with exact correct syntax
+# Follow deployment guidelines on Deploy tab of heroku project page
