@@ -1,5 +1,6 @@
 from flask import Blueprint, json, jsonify, request
 from app.models import Actor, db
+from .apiauthhelper import token_required
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -27,6 +28,7 @@ def get_actor(id):
         return jsonify(f"Actor of id: <{id}> does not exist in the database.")
 
 @api.route('/actors/<int:id>', methods=['DELETE'])
+@token_required
 def delete_actor(id):
     """
     [DELETE] /api/actors/<int:id>
@@ -42,6 +44,7 @@ def delete_actor(id):
 
 
 @api.route('/actors/<int:id>', methods=['PUT'])
+@token_required
 def update_actor(id):
     """
     [PUT] /actors/<int:id>
@@ -59,6 +62,7 @@ def update_actor(id):
     return jsonify({'Updated': actor.to_dict()})
 
 @api.route('createactor', methods=['POST'])
+@token_required
 def create_actor():
     """
     [POST] /api/createactor

@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 from datetime import datetime
 import uuid
+from secrets import token_hex
 
 # adding flask security for password
 from werkzeug.security import generate_password_hash
@@ -70,6 +71,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150), nullable=False)
     first_name = db.Column(db.String(150), nullable=True, default='')
     last_name = db.Column(db.String(150), nullable=True, default='')
+    apitoken = db.Column(db.String(32), nullable=True, default=None)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __init__(self, username, email, password, first_name='', last_name=''):
@@ -79,6 +81,7 @@ class User(db.Model, UserMixin):
         self.first_name = first_name.title()
         self.last_name = last_name.title()
         self.id = str(uuid.uuid4())
+        self.apitoken = token_hex(16)
 
     def to_dict(self):
         return {
