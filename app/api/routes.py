@@ -1,6 +1,9 @@
 from flask import Blueprint, json, jsonify, request
 from app.models import Actor, db
 from .apiauthhelper import token_required
+from bs4 import BeautifulSoup
+import requests as req
+from urllib.parse import unquote
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -86,4 +89,24 @@ def create_actor():
     db.session.add(newactor)
     db.session.commit()
     return jsonify({'Created': Actor.query.all()[-1].to_dict()})
+
+
+@api.route('spotifyscraper', methods=['POST'])
+def scrape_tracks():
+    """
+    [POST] /api/spotifyscraper
+    Accepts input of JSON tracklist
+    Returns list of preview_urls
+    """
+    r = request.json
+    # single
+    for i in range(len(r)):
+        try:
+            url = req.get(r[i]).text
+            soup = BeautifulSoup(url, "html.parser")
+            soup = json.loads(unquote(soup.find(id='resource').text))
+            r[i] = soup['preview_url']
+        except:
+            continue
+    return jsonify(r), 200
 

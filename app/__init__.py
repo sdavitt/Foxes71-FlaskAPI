@@ -14,7 +14,7 @@ from flask_migrate import Migrate
 
 # instantiate the instance of our application
 app = Flask(__name__)
-cors = CORS(app, origins=['*'])
+cors = CORS(app, origins=['*', 'http://localhost:52330'])
 
 # register our blueprints
 app.register_blueprint(movies)
