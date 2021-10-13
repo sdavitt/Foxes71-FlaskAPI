@@ -52,7 +52,7 @@ def update_actor(id):
     """
     [PUT] /actors/<int:id>
     Accepts input of a dictionary of as many or as few attributes of the specified actor to update
-    Attribute options: 'id', 'first_name', 'last_name', 'age', 'nationality', 'bestrole', 'bestmovie', 'hiringprice'
+    Attribute options: 'id', 'first_name', 'last_name', 'age', 'nationality', 'bestrole', 'bestmovie', 'hiringprice', 'image'
     Returns a dictionary representation of the updated actor
     """
     r = request.get_json()
@@ -99,7 +99,6 @@ def scrape_tracks():
     Returns list of preview_urls
     """
     r = request.json
-    # single
     for i in range(len(r)):
         try:
             url = req.get(r[i]).text

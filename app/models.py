@@ -31,6 +31,7 @@ class Actor(db.Model):
     nationality = db.Column(db.String(50))
     bestrole = db.Column(db.String(100))
     bestmovie = db.Column(db.String(100))
+    image = db.Column(db.String(250))
 
     def to_dict(self):
         return {
@@ -41,7 +42,8 @@ class Actor(db.Model):
             'age': self.age,
             'nationality': self.nationality,
             'bestrole': self.bestrole,
-            'bestmovie': self.bestmovie
+            'bestmovie': self.bestmovie,
+            'image': self.image
         }
 
     def from_dict(self, new):
@@ -57,6 +59,8 @@ class Actor(db.Model):
             self.age = new.get('age')
         if new.get('nationality') or new.get('nationality') == '':
             self.nationality = new.get('nationality')
+        if new.get('image') or new.get('image') == '':
+            self.nationality = new.get('image')
         if new.get('bestrole'):
             self.bestrole = new.get('bestrole')
         if new.get('bestmovie'):
