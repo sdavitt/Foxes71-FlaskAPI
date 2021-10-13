@@ -60,7 +60,7 @@ class Actor(db.Model):
         if new.get('nationality') or new.get('nationality') == '':
             self.nationality = new.get('nationality')
         if new.get('image') or new.get('image') == '':
-            self.nationality = new.get('image')
+            self.image = new.get('image')
         if new.get('bestrole'):
             self.bestrole = new.get('bestrole')
         if new.get('bestmovie'):
