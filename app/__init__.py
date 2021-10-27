@@ -7,6 +7,7 @@ from flask_cors import CORS
 from .movies.routes import movies
 from .authentication.routes import auth
 from .api.routes import api
+from .payment.routes import payment
 
 # imports for our database stuff
 from .models import db, login
@@ -20,6 +21,7 @@ cors = CORS(app, origins=['*', 'http://localhost:52330'])
 app.register_blueprint(movies)
 app.register_blueprint(auth)
 app.register_blueprint(api)
+app.register_blueprint(payment)
 
 # configure that app from our config file
 app.config.from_object(Config)
